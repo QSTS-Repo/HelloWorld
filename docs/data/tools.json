@@ -1,0 +1,4 @@
+[
+  {"name":"ToolA","slug":"toola","shortDescription":"Analyze traces and find anomalies.","description":"ToolA is a static and dynamic analyzer for system traces. Use it to locate anomalies and generate reports.","image":"assets/tool-placeholder.svg","github":"https://github.com/QSTS-Repo/ToolA"},
+  {"name":"ToolB","slug":"toolb","shortDescription":"Fuzz testing for embedded controllers.","description":"ToolB helps fuzz test embedded controllers using model-guided inputs and coverage tracking.","image":"assets/tool-placeholder.svg"}
+]
