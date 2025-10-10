@@ -1,0 +1,10 @@
+{
+  "teamName": "QSTS Research Team",
+  "tagline": "Quality & Safety Tools for Systems",
+  "description": "We develop open tools to support research and engineering in quality, safety and testing for cyber-physical systems. Browse our tools below and contact us for collaborations.",
+  "contactEmail": "qsts-team@example.com",
+  "members": [
+    {"name":"Alice Researcher","cris":"https://cris.example.org/alice","linkedin":"https://linkedin.com/in/alice","photo":"assets/person-placeholder.svg"},
+    {"name":"Bob Scientist","cris":"https://cris.example.org/bob","linkedin":"https://linkedin.com/in/bob","photo":"assets/person-placeholder.svg"}
+  ]
+}
