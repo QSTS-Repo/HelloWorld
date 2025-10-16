@@ -471,6 +471,21 @@ section {
     inset 0 -1px 0 0 rgba(255, 255, 255, 0.02),
     0 0 0 1px rgba(255, 255, 255, 0.12);
 }
+
+.btn-outline {
+  background: transparent;
+  color: var(--text-primary);
+  border: 2px solid var(--accent-primary);
+  box-shadow: 0 0 0 0 rgba(245, 124, 0, 0);
+}
+
+.btn-outline:hover {
+  background: rgba(245, 124, 0, 0.1);
+  transform: translateY(-1px);
+  box-shadow: 
+    0 4px 8px rgba(245, 124, 0, 0.2),
+    0 0 12px rgba(245, 124, 0, 0.15);
+}
 /* Team Members */
 .team-section {
   position: relative;
