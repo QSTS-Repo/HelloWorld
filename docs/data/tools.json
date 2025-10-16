@@ -1,4 +1,34 @@
 [
-  {"name":"ToolA","slug":"toola","shortDescription":"Analyze traces and find anomalies.","description":"ToolA is a static and dynamic analyzer for system traces. Use it to locate anomalies and generate reports.","image":"assets/tool-placeholder.svg","github":"https://github.com/QSTS-Repo/ToolA"},
-  {"name":"ToolB","slug":"toolb","shortDescription":"Fuzz testing for embedded controllers.","description":"ToolB helps fuzz test embedded controllers using model-guided inputs and coverage tracking.","image":"assets/tool-placeholder.svg"}
+  {
+    "name": "File2Foresight",
+    "slug": "file2foresight",
+    "shortDescription": "Signal Radar for Emerging Trends",
+    "description": "File2Foresight generates a signal radar using data produced by a novel, quantitative method for detecting weak (emerging) signals in large scale data.",
+    "image": "assets/File2Foresight.png",
+    "learnMoreUrl": "#"
+  },
+  {
+    "name": "LitLoom",
+    "slug": "litloom",
+    "shortDescription": "AI-Augmented Systematic Review Platform",
+    "description": "LitLoom facilitates AI-augmented systematic review, combining the efficiency of automation with robust human-in-the-loop injection points to maintain reliable and trustworthy outcomes.",
+    "image": "assets/LitLoom.png",
+    "learnMoreUrl": "https://github.com/QSTS-Repo/LitLoom"
+  },
+  {
+    "name": "AI-Assisted S-LCA",
+    "slug": "ai-slca",
+    "shortDescription": "Social Life Cycle Assessment Automation",
+    "description": "AI-Assisted Social Life Cycle Assessment enables efficient, large-scale Social Life Cycle Assessment by automating the data extraction and evaluation stages of S-LCA while integrating human-in-the-loop processes for responsible implementation and trustworthy outputs.",
+    "image": "assets/SLCA.png",
+    "learnMoreUrl": "https://github.com/QSTS-Repo/LitLoom"
+  },
+  {
+    "name": "OECD Survey Pre-Filling",
+    "slug": "survey-prefilling",
+    "shortDescription": "Automated Survey Data Extraction",
+    "description": "Developed for the OECD's STIPCompass survey, this pipeline automatically pre-fills questionnaires by extracting information from user provided PDFs or URLs, streamlining the data collection process for the STIPCompass innovation policy database.",
+    "image": "assets/Survey.png",
+    "learnMoreUrl": "#"
+  }
 ]

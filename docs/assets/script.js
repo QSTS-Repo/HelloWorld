@@ -5,46 +5,179 @@ async function loadJSON(path){
 }
 
 function createMemberCard(m){
-  const el = document.createElement('div'); el.className='member';
-  const img = document.createElement('img'); img.src = m.photo || 'assets/person-placeholder.svg'; img.alt = m.name;
+  const el = document.createElement('div');
+  el.className = 'member';
+  
+  const img = document.createElement('img');
+  img.src = m.photo || 'assets/person-placeholder.svg';
+  img.alt = m.name;
+  img.loading = 'lazy';
+  
   const info = document.createElement('div');
-  const name = document.createElement('div'); name.textContent = m.name; name.style.fontWeight='600';
-  const links = document.createElement('div'); links.style.fontSize='13px';
-  if(m.cris) links.innerHTML += `<a href="${m.cris}" target="_blank" rel="noopener">CRIS</a> `;
-  if(m.linkedin) links.innerHTML += ` <a href="${m.linkedin}" target="_blank" rel="noopener">LinkedIn</a>`;
-  info.appendChild(name); info.appendChild(links);
-  el.appendChild(img); el.appendChild(info);
+  info.className = 'info';
+  
+  const name = document.createElement('h3');
+  name.textContent = m.name;
+  
+  const title = document.createElement('div');
+  title.className = 'title';
+  title.textContent = m.title || '';
+  
+    const socialLinks = document.createElement('div');
+    socialLinks.className = 'social-links';
+    
+    if(m.cris) {
+      const crisLink = document.createElement('a');
+      crisLink.href = m.cris;
+      crisLink.className = 'social-link cris';
+      crisLink.target = '_blank';
+      crisLink.rel = 'noopener';
+      crisLink.title = 'CRIS Profile';
+      crisLink.innerHTML = '<i class="fas fa-user-circle"></i>';
+      socialLinks.appendChild(crisLink);
+    }
+    
+    if(m.linkedin) {
+      const linkedinLink = document.createElement('a');
+      linkedinLink.href = m.linkedin;
+      linkedinLink.className = 'social-link linkedin';
+      linkedinLink.target = '_blank';
+      linkedinLink.rel = 'noopener';
+      linkedinLink.title = 'LinkedIn Profile';
+      linkedinLink.innerHTML = '<i class="fab fa-linkedin-in"></i>';
+      socialLinks.appendChild(linkedinLink);
+    }
+    
+    if(m.orcid) {
+      const orcidLink = document.createElement('a');
+      orcidLink.href = 'https://orcid.org/' + m.orcid;
+      orcidLink.className = 'social-link orcid';
+      orcidLink.target = '_blank';
+      orcidLink.rel = 'noopener';
+      orcidLink.title = 'ORCID Profile';
+      orcidLink.innerHTML = '<i class="fab fa-orcid"></i>';
+      socialLinks.appendChild(orcidLink);
+    }
+
+  info.appendChild(name);
+  info.appendChild(title);
+  info.appendChild(socialLinks);
+  
+  el.appendChild(img);
+  el.appendChild(info);
+  
   return el;
 }
 
 function createToolCard(t){
-  const el = document.createElement('article'); el.className='card';
-  const thumb = document.createElement('div'); thumb.className='thumb';
-  const img = document.createElement('img'); img.src = t.image || 'assets/tool-placeholder.svg'; img.alt = t.name; img.style.width='100%'; img.style.height='100%'; img.style.objectFit='cover';
+  const container = document.createElement('div');
+  container.className = 'card-container';
+  
+  const card = document.createElement('article');
+  card.className = 'card';
+  
+  // Create front of card
+  const front = document.createElement('div');
+  front.className = 'card-front';
+  
+  const thumb = document.createElement('div');
+  thumb.className = 'thumb';
+  const img = document.createElement('img');
+  img.src = t.image || 'assets/tool-placeholder.svg';
+  img.alt = t.name;
+  img.style.width = '100%';
+  img.style.height = '100%';
+  img.style.objectFit = 'cover';
   thumb.appendChild(img);
-  const title = document.createElement('h3'); title.textContent = t.name;
-  const p = document.createElement('p'); p.textContent = t.shortDescription || '';
-  const actions = document.createElement('div'); actions.className='actions';
-  const learn = document.createElement('a'); learn.className='btn'; learn.textContent='Learn more';
+  
+  const title = document.createElement('h3');
+  title.textContent = t.name;
+  
+  const shortDesc = document.createElement('p');
+  shortDesc.textContent = t.shortDescription || '';
+  
+  front.appendChild(thumb);
+  front.appendChild(title);
+  front.appendChild(shortDesc);
+  
+  // Create back of card
+  const back = document.createElement('div');
+  back.className = 'card-back';
+  
+  const backTitle = document.createElement('h3');
+  backTitle.textContent = t.name;
+  
+  const description = document.createElement('div');
+  description.className = 'description';
+  description.textContent = t.description || '';
+  
+  const actions = document.createElement('div');
+  actions.className = 'actions';
+  const learn = document.createElement('a');
+  learn.className = 'btn';
+  learn.textContent = 'Learn more';
   const slug = t.slug || t.name.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/(^-|-$)/g,'');
-  learn.href = `contact.html?tool=${encodeURIComponent(slug)}`;
+  learn.href = t.learnMoreUrl || `contact.html?tool=${encodeURIComponent(slug)}`;
   actions.appendChild(learn);
-  el.appendChild(thumb); el.appendChild(title); el.appendChild(p); el.appendChild(actions);
-  return el;
+  
+  back.appendChild(backTitle);
+  back.appendChild(description);
+  back.appendChild(actions);
+  
+  // Add hover handlers for flip
+  container.addEventListener('mouseenter', () => {
+    card.classList.add('flipped');
+  });
+  
+  container.addEventListener('mouseleave', () => {
+    card.classList.remove('flipped');
+  });
+  
+  card.appendChild(front);
+  card.appendChild(back);
+  container.appendChild(card);
+  
+  return container;
 }
 
 async function renderIndex(){
-  const data = await loadJSON('data/team.json');
-  document.getElementById('team-name').textContent = data.teamName;
-  document.getElementById('team-tagline').textContent = data.tagline || '';
-  document.getElementById('team-description').textContent = data.description || '';
-  document.getElementById('team-year').textContent = new Date().getFullYear();
+  try {
+    console.log('Starting to load data...');
+    const [teamData, toolsData] = await Promise.all([
+      loadJSON('data/team.json'),
+      loadJSON('data/tools.json')
+    ]);
+    console.log('Data loaded:', { teamData, toolsData });
+    
+    const teamNameEl = document.getElementById('team-name');
+    if (teamNameEl) teamNameEl.textContent = teamData.teamName;
+    
+    const teamDescEl = document.getElementById('team-description');
+    if (teamDescEl) teamDescEl.textContent = teamData.description || '';
+    
+    const yearEl = document.getElementById('team-year');
+    if (yearEl) yearEl.textContent = new Date().getFullYear();
 
-  const membersEl = document.getElementById('members'); membersEl.innerHTML='';
-  (data.members||[]).forEach(m=>membersEl.appendChild(createMemberCard(m)));
+    const membersEl = document.getElementById('members');
+    if (membersEl) {
+      console.log('Found members element, rendering', teamData.members?.length, 'members');
+      membersEl.innerHTML = '';
+      (teamData.members || []).forEach(m => membersEl.appendChild(createMemberCard(m)));
+    } else {
+      console.error('Members element not found');
+    }
 
-  const toolsGrid = document.getElementById('tools-grid'); toolsGrid.innerHTML='';
-  (data.tools||[]).forEach(t=>toolsGrid.appendChild(createToolCard(t)));
+    const toolsGrid = document.getElementById('tools-grid');
+    if (toolsGrid) {
+      console.log('Found tools grid, rendering', toolsData?.length, 'tools');
+      toolsGrid.innerHTML = '';
+      toolsData.forEach(t => toolsGrid.appendChild(createToolCard(t)));
+    } else {
+      console.error('Tools grid element not found');
+    }
+  } catch (error) {
+    console.error('Error rendering index:', error);
+  }
 }
 
 function getQueryParam(name){
@@ -52,37 +185,44 @@ function getQueryParam(name){
   return url.searchParams.get(name);
 }
 
-async function renderContact(){
-  const slug = getQueryParam('tool');
-  const data = await loadJSON('data/team.json');
-  document.getElementById('team-year-2').textContent = new Date().getFullYear();
-  const tool = (data.tools||[]).find(t=>t.slug===slug) || (data.tools||[]).find(t=>t.name.toLowerCase().includes(slug||'')) || null;
-  if(!tool){
-    document.getElementById('tool-title').textContent = 'Tool not found';
-    document.getElementById('tool-desc').textContent = 'No tool matches the requested identifier.';
-    return;
-  }
-  document.getElementById('tool-title').textContent = tool.name;
-  document.getElementById('tool-desc').textContent = tool.description || tool.shortDescription || '';
-  document.getElementById('tool-image').src = tool.image || 'assets/tool-placeholder.svg';
-  const mail = tool.contactEmail || data.contactEmail || 'mailto:info@example.com';
-  const mailEl = document.getElementById('contact-mail'); mailEl.href = 'mailto:'+mail; mailEl.textContent = mail;
 
-  const links = document.getElementById('tool-links'); links.innerHTML='';
-  if(tool.github){
-    const a = document.createElement('a'); a.className='btn secondary'; a.href=tool.github; a.target='_blank'; a.rel='noopener'; a.textContent='GitHub repo';
-    links.appendChild(a);
-  }
-  if(tool.moreInfo){
-    const a = document.createElement('a'); a.className='btn'; a.href=tool.moreInfo; a.target='_blank'; a.rel='noopener'; a.textContent='More info';
-    links.appendChild(a);
-  }
-}
 
 document.addEventListener('DOMContentLoaded',()=>{
+  // Prevent default hash scroll on page load
+  let initialHash = location.hash;
+  if (initialHash) {
+    history.scrollRestoration = 'manual';
+    window.scrollTo(0, 0);
+  }
+
   if(location.pathname.endsWith('index.html')||location.pathname.endsWith('/')||location.pathname.endsWith('docs/') ){
-    renderIndex().catch(e=>console.error(e));
+    renderIndex().then(() => {
+      // If there was a hash in the URL, scroll to it after content is loaded
+      if (initialHash) {
+        requestAnimationFrame(() => {
+          const element = document.querySelector(initialHash);
+          if (element) {
+            element.scrollIntoView({ behavior: 'smooth' });
+          }
+        });
+      }
+    }).catch(e=>console.error(e));
   } else if(location.pathname.endsWith('contact.html')){
-    renderContact().catch(e=>console.error(e));
+    document.getElementById('team-year').textContent = new Date().getFullYear();
+    
+    // Handle contact form submission
+    const emailForm = document.getElementById('emailForm');
+    if (emailForm) {
+      emailForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const senderEmail = document.getElementById('senderEmail').value;
+        const subject = document.getElementById('subject').value;
+        const message = document.getElementById('message').value;
+        
+        // Create mailto link with form data
+        const mailtoLink = `mailto:qsts@vtt.fi?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent('From: ' + senderEmail + '\n\n' + message)}`;
+        window.location.href = mailtoLink;
+      });
+    }
   }
 });

@@ -1,48 +1,128 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+    <meta name="description" content="QSTS Research Team develops innovative data-driven tools for quantitative science and technology studies." />
+    <meta name="theme-color" content="#000B1F" />
     <title>QSTS Tools — Research Tools</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    
     <link rel="stylesheet" href="assets/style.css" />
   </head>
   <body>
     <header class="site-header">
       <div class="container header-inner">
-        <div class="brand">
-          <img src="assets/logo.svg" alt="Team logo" class="logo" />
-          <div>
-            <h1 id="team-name">QSTS Research Team</h1>
-            <p id="team-tagline">Quality and Safety Tools for Systems</p>
+        <a href="#" class="brand">
+          <div class="logo-container">
+            <img src="assets/QSTS2.png" alt="QSTS logo" class="logo" />
+            <div class="logo-glow"></div>
           </div>
-        </div>
+          <div class="brand-text">
+            <h1 id="team-name">Quantitative Science and Technology Studies</h1>
+            <p class="brand-subtitle">A <img src="assets/VTT.png" alt="VTT" class="subtitle-logo" /> Research Team</p>
+          </div>
+        </a>
         <nav aria-label="Primary navigation">
-          <a href="#tools" class="nav-link">Tools</a>
-          <a href="#team" class="nav-link">Team</a>
-          <a href="contact.html" class="nav-link">Contact</a>
+          <a href="#about" class="nav-link">About Us</a>
+          <a href="#tools" class="nav-link">Tools & Services</a>
+          <a href="#team" class="nav-link">Our Team</a>
+          <a href="contact.html" class="nav-btn">Contact Us</a>
         </nav>
       </div>
     </header>
 
-    <main class="container">
-      <section class="intro" id="intro">
-        <p id="team-description">Loading team description…</p>
+    <main>
+      <section class="hero">
+        <div class="container hero-content">
+          <h2 class="hero-title">Advancing Innovation Research With Responsible, AI-Driven Solutions</h2>
+          <p class="hero-subtitle">We develop quantiative metrics and AI-augmented tools for innovation and technology studies, specializing in human-in-the-loop and automated evaluation frameworks.</p>
+
+        </div>
+        <div class="hero-background">
+          <div class="gradient-overlay"></div>
+        </div>
+      </section>
+      
+      <section id="about" class="about-section">
+        <div class="container">
+          <div class="section-header">
+            <h2 class="section-title">About Us</h2>
+            <div class="section-line"></div>
+          </div>
+          <p id="team-description" class="section-text">Loading team description…</p>
+        </div>
       </section>
 
       <section id="tools" class="tools-section">
-        <h2>Our Tools</h2>
-        <div id="tools-grid" class="grid"></div>
+        <div class="container">
+          <div class="section-header">
+            <h2 class="section-title">Tools and Services</h2>
+            <div class="section-line"></div>
+          </div>
+          <div id="tools-grid" class="grid"></div>
+        </div>
       </section>
 
       <section id="team" class="team-section">
-        <h2>Team Members</h2>
-        <div id="members" class="members-grid"></div>
+        <div class="container">
+          <div class="section-header">
+            <h2 class="section-title">Meet Our Team</h2>
+            <div class="section-line"></div>
+          </div>
+          <div id="members" class="members-grid"></div>
+        </div>
+      </section>
+
+      <section class="cta-section">
+        <div class="container">
+          <div class="cta-content">
+            <h2>Interested in Collaboration?</h2>
+            <p>We're always open to new partnerships and collaborations, let's find out what we can achieve together.</p>
+            <a href="contact.html" class="btn btn-primary">Get in Touch</a>
+          </div>
+        </div>
       </section>
     </main>
 
     <footer class="site-footer">
-      <div class="container">
-        <p>© <span id="team-year"></span> QSTS Research Team — Built for GitHub Pages</p>
+      <div class="container footer-content">
+        <div class="footer-brands">
+          <div class="footer-brand">
+            <img src="assets/QSTS2.png" alt="QSTS logo" class="footer-logo" />
+            <div class="footer-brand-text">
+              <h3>QSTS Research</h3>
+              <p>Advancing innovation research with data-driven methods</p>
+            </div>
+          </div>
+          <div class="footer-affiliation">
+            <a href="https://www.vttresearch.com" target="_blank" rel="noopener">
+              <img src="assets/VTT.png" alt="VTT logo" class="footer-logo vtt-logo" />
+            </a>
+          </div>
+        </div>
+        <div class="footer-links">
+          <div class="footer-nav">
+            <h4>Quick Links</h4>
+            <a href="#about">About Us</a>
+            <a href="#tools">Tools & Services</a>
+            <a href="#team">Our Team</a>
+            <a href="contact.html">Contact</a>
+          </div>
+          <div class="footer-social">
+            <h4>Connect</h4>
+            <a href="https://github.com/QSTS-Repo" target="_blank" rel="noopener">
+              <i class="fab fa-github"></i> GitHub
+            </a>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>© <span id="team-year"></span> QSTS Research Team. All rights reserved.</p>
+        </div>
       </div>
     </footer>
 

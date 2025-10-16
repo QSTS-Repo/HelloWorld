@@ -1,44 +1,125 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+    <meta name="description" content="Contact the QSTS Research Team for collaborations, questions, or more information about our tools." />
+    <meta name="theme-color" content="#000B1F" />
     <title>Contact — QSTS Tools</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    
     <link rel="stylesheet" href="assets/style.css" />
   </head>
   <body>
     <header class="site-header">
       <div class="container header-inner">
-        <div class="brand">
-          <img src="assets/logo.svg" alt="Team logo" class="logo" />
-          <div>
-            <h1>QSTS Research Team</h1>
+        <a href="index.html" class="brand">
+          <div class="logo-container">
+            <img src="assets/QSTS2.png" alt="QSTS logo" class="logo" />
+            <div class="logo-glow"></div>
           </div>
-        </div>
+          <div class="brand-text">
+            <h1>Quantitative Science and Technology Studies</h1>
+            <p class="brand-subtitle">A <img src="assets/VTT.png" alt="VTT" class="subtitle-logo" /> Research Team</p>
+          </div>
+        </a>
         <nav aria-label="Primary navigation">
-          <a href="index.html" class="nav-link">Home</a>
+          <a href="index.html#about" class="nav-link">About Us</a>
+          <a href="index.html#tools" class="nav-link">Tools & Services</a>
+          <a href="index.html#team" class="nav-link">Meet Our Team</a>
+          <a href="#" class="nav-btn">Contact Us</a>
         </nav>
       </div>
     </header>
 
-    <main class="container">
-      <section id="tool-details" class="tool-details">
-        <div class="tool-header">
-          <img id="tool-image" src="assets/tool-placeholder.svg" alt="Tool image" class="tool-image" />
-          <div>
-            <h2 id="tool-title">Tool title</h2>
-            <p id="tool-desc">Description</p>
-            <p id="tool-contact">Contact: <a id="contact-mail" href="#">email</a></p>
+    <main>
+      <section class="contact-section">
+        <div class="container">
+          <div class="section-header">
+            <h2 class="section-title">Contact Us</h2>
+            <div class="section-line"></div>
+            <p class="section-text">
+              Whether you're interested in collaboration, have questions about our tools, or want to learn more about our research,
+              we'd love to hear from you.
+            </p>
+          </div>
+          
+          <div class="contact-grid">
+            <div class="contact-form">
+              <form id="emailForm" class="form">
+                <div class="form-group">
+                  <label for="senderEmail">Your Email</label>
+                  <input type="email" id="senderEmail" name="senderEmail" required placeholder="your.email@example.com">
+                </div>
+                <div class="form-group">
+                  <label for="subject">Subject</label>
+                  <input type="text" id="subject" name="subject" required placeholder="Message subject">
+                </div>
+                <div class="form-group">
+                  <label for="message">Message</label>
+                  <textarea id="message" name="message" rows="6" required placeholder="Type your message here..."></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Send Message</button>
+              </form>
+            </div>
+
+            <div class="contact-info">
+              <div class="contact-method">
+                <i class="fab fa-github"></i>
+                <h3>GitHub</h3>
+                <p>Check out our open-source projects:</p>
+                <a href="https://github.com/QSTS-Repo" target="_blank" rel="noopener" class="contact-link">QSTS-Repo</a>
+              </div>
+
+              <div class="contact-method">
+                <i class="fas fa-building"></i>
+                <h3>Find Us</h3>
+                <p>VTT Technical Research Centre of Finland Ltd</p>
+                <a href="https://www.vttresearch.com" target="_blank" rel="noopener" class="contact-link">VTT Website</a>
+              </div>
+            </div>
           </div>
         </div>
-
-        <div id="tool-links" class="tool-links"></div>
       </section>
     </main>
 
     <footer class="site-footer">
-      <div class="container">
-        <p>© <span id="team-year-2"></span> QSTS Research Team</p>
+      <div class="container footer-content">
+        <div class="footer-brands">
+          <div class="footer-brand">
+            <img src="assets/QSTS2.png" alt="QSTS logo" class="footer-logo" />
+            <div class="footer-brand-text">
+              <h3>QSTS Research</h3>
+              <p>Advancing research through data-driven innovation</p>
+            </div>
+          </div>
+          <div class="footer-affiliation">
+            <a href="https://www.vttresearch.com" target="_blank" rel="noopener">
+              <img src="assets/VTT.png" alt="VTT logo" class="footer-logo vtt-logo" />
+            </a>
+          </div>
+        </div>
+        <div class="footer-links">
+                    <div class="footer-nav">
+            <h4>Quick Links</h4>
+            <a href="index.html#about">About Us</a>
+            <a href="index.html#tools">Tools & Services</a>
+            <a href="index.html#team">Our Team</a>
+          </div>
+          <div class="footer-social">
+            <h4>Connect</h4>
+            <a href="https://github.com/QSTS-Repo" target="_blank" rel="noopener">
+              <i class="fab fa-github"></i> GitHub
+            </a>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>© <span id="team-year"></span> QSTS Research Team. All rights reserved.</p>
+        </div>
       </div>
     </footer>
 

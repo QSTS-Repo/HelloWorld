@@ -1,10 +1,63 @@
 {
-  "teamName": "QSTS Research Team",
-  "tagline": "Quality & Safety Tools for Systems",
-  "description": "We develop open tools to support research and engineering in quality, safety and testing for cyber-physical systems. Browse our tools below and contact us for collaborations.",
-  "contactEmail": "qsts-team@example.com",
+  "teamName": "Quantitative Science and Technology Studies",
+  "tagline": "Data-Driven Solutions for Complex Challenges",
+  "description": "We explore, develop, and apply data-driven methodologies to understand complex societal, technological, and economic challenges. Our team specializes in science, technology, and innovation (STI) studies, leveraging AI-driven foresight, large-scale data analytics, and algorithmic evaluation frameworks to deliver novel insights. Through continuous methodological advancement and proactive collaboration, we pioneer the next generation of innovation analytics while ensuring responsible and effective integration of AI in research and policy.",
+  "contactEmail": "qsts@vtt.fi",
   "members": [
-    {"name":"Alice Researcher","cris":"https://cris.example.org/alice","linkedin":"https://linkedin.com/in/alice","photo":"assets/person-placeholder.svg"},
-    {"name":"Bob Scientist","cris":"https://cris.example.org/bob","linkedin":"https://linkedin.com/in/bob","photo":"assets/person-placeholder.svg"}
+    {
+      "name": "Sari Vainikainen",
+      "title": "Senior Scientist",
+      "cris": "https://cris.vtt.fi/en/persons/sari-vainikainen",
+      "photo": "https://cris.vtt.fi/files-asset/35016869/SariVainikainen_kuva.jpg",
+      "orcid": "0009-0009-0464-2151",
+      "linkedin": "https://www.linkedin.com/in/sari-vainikainen-36a12a/"
+    },
+    {
+      "name": "Mika Naumanen",
+      "title": "Senior Scientist",
+      "cris": "https://cris.vtt.fi/en/persons/mika-naumanen",
+      "photo": "https://cris.vtt.fi/files-asset/24726935/Mika_Naumanen.png",
+      "orcid": "0000-0002-6868-8097",
+      "linkedin": "https://www.linkedin.com/in/mika-naumanen-19bb5/"
+    },
+    {
+      "name": "Matthias Deschryvere",
+      "title": "Senior Scientist",
+      "cris": "https://cris.vtt.fi/en/persons/matthias-deschryvere",
+      "photo": "https://cris.vtt.fi/files-asset/66950686/Mtthias_Deschryvere_1.jpeg",
+      "orcid": "0000-0002-0649-9717",
+      "linkedin": "https://www.linkedin.com/in/matthiasdeschryvere/"
+    },
+    {
+      "name": "Carolyn Cole",
+      "title": "Research Scientist",
+      "cris": "https://cris.vtt.fi/en/persons/carolyn-cole",
+      "photo": "https://cris.vtt.fi/files-asset/71576259/1652092142224.jpg",
+      "orcid": "0009-0000-6031-881X",
+      "linkedin": "https://www.linkedin.com/in/carolyn-cole-968062b7/"
+    },
+    {
+      "name": "Richard Schmidt",
+      "title": "Research Scientist",
+      "cris": "https://cris.vtt.fi/en/persons/richard-schmidt",
+      "photo": "https://cris.vtt.fi/files-asset/110271509/profil_image.png",
+      "linkedin": "https://www.linkedin.com/in/richard-schmidt-25767128b/"
+    },
+    {
+      "name": "Toqeer Ehsan",
+      "title": "Postdoctoral Researcher",
+      "cris": "https://cris.vtt.fi/en/persons/toqeer-ehsan",
+      "photo": "https://cris.vtt.fi/files-asset/121151434/Toqeer_Photo_VTT_email.jpeg",
+      "linkedin": "https://www.linkedin.com/in/toqeerehsan/",
+      "orcid": "0000-0002-6724-6705"
+    },
+    {
+      "name": "Arash Hajikhani",
+      "title": "Research Professor",
+      "cris": "https://cris.vtt.fi/en/persons/arash-hajikhani",
+      "photo": "https://cris.vtt.fi/files-asset/71526150/IMG_7157.JPG",
+      "orcid": "0000-0002-9079-6006",
+      "linkedin": "https://www.linkedin.com/in/arashhajikhani/"
+    }
   ]
 }
