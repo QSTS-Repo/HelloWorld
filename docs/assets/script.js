@@ -12,6 +12,9 @@ function createMemberCard(m){
   img.src = m.photo || 'assets/person-placeholder.svg';
   img.alt = m.name;
   img.loading = 'lazy';
+  img.onerror = () => {
+    img.src = 'assets/person-placeholder.svg';
+  };
   
   const info = document.createElement('div');
   info.className = 'info';
@@ -85,9 +88,6 @@ function createToolCard(t){
   const img = document.createElement('img');
   img.src = t.image || 'assets/tool-placeholder.svg';
   img.alt = t.name;
-  img.style.width = '100%';
-  img.style.height = '100%';
-  img.style.objectFit = 'cover';
   thumb.appendChild(img);
   
   const title = document.createElement('h3');
@@ -117,7 +117,7 @@ function createToolCard(t){
   learn.className = 'btn';
   learn.textContent = 'Learn more';
   const slug = t.slug || t.name.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/(^-|-$)/g,'');
-  learn.href = t.learnMoreUrl || `contact.html?tool=${encodeURIComponent(slug)}`;
+  learn.href = (t.learnMoreUrl && t.learnMoreUrl !== '#') ? t.learnMoreUrl : `contact.html?tool=${encodeURIComponent(slug)}`;
   actions.appendChild(learn);
   
   back.appendChild(backTitle);
@@ -142,50 +142,46 @@ function createToolCard(t){
 
 async function renderIndex(){
   try {
-    console.log('Starting to load data...');
     const [teamData, toolsData] = await Promise.all([
       loadJSON('data/team.json'),
       loadJSON('data/tools.json')
     ]);
-    console.log('Data loaded:', { teamData, toolsData });
     
+    // Batch DOM updates
     const teamNameEl = document.getElementById('team-name');
-    if (teamNameEl) teamNameEl.textContent = teamData.teamName;
-    
     const teamDescEl = document.getElementById('team-description');
-    if (teamDescEl) teamDescEl.textContent = teamData.description || '';
-    
     const yearEl = document.getElementById('team-year');
+    const membersEl = document.getElementById('members');
+    const toolsGrid = document.getElementById('tools-grid');
+    
+    // Update text content
+    if (teamNameEl) teamNameEl.textContent = teamData.teamName;
+    if (teamDescEl) teamDescEl.textContent = teamData.description || '';
     if (yearEl) yearEl.textContent = new Date().getFullYear();
 
-    const membersEl = document.getElementById('members');
-    if (membersEl) {
-      console.log('Found members element, rendering', teamData.members?.length, 'members');
+    // Render members using DocumentFragment for better performance
+    if (membersEl && teamData.members?.length) {
+      const fragment = document.createDocumentFragment();
+      teamData.members.forEach(m => fragment.appendChild(createMemberCard(m)));
       membersEl.innerHTML = '';
-      (teamData.members || []).forEach(m => membersEl.appendChild(createMemberCard(m)));
-    } else {
-      console.error('Members element not found');
+      membersEl.appendChild(fragment);
     }
 
-    const toolsGrid = document.getElementById('tools-grid');
+    // Render tools using DocumentFragment
     if (toolsGrid) {
-      console.log('Found tools grid, rendering', toolsData?.length, 'tools');
-      toolsGrid.innerHTML = '';
-      toolsData.forEach(t => toolsGrid.appendChild(createToolCard(t)));
-    } else {
-      console.error('Tools grid element not found');
+      if (toolsData?.length) {
+        const fragment = document.createDocumentFragment();
+        toolsData.forEach(t => fragment.appendChild(createToolCard(t)));
+        toolsGrid.innerHTML = '';
+        toolsGrid.appendChild(fragment);
+      } else {
+        toolsGrid.innerHTML = '<div class="loading-indicator">No tools available</div>';
+      }
     }
   } catch (error) {
     console.error('Error rendering index:', error);
   }
 }
-
-function getQueryParam(name){
-  const url = new URL(location.href);
-  return url.searchParams.get(name);
-}
-
-
 
 document.addEventListener('DOMContentLoaded',()=>{
   // Prevent default hash scroll on page load

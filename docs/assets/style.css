@@ -44,7 +44,7 @@
 }
 
 .description::-webkit-scrollbar-thumb {
-  background: var(--accent);
+  background: var(--accent-primary);
   border-radius: 3px;
 }
 
@@ -136,6 +136,7 @@ body {
   font-weight: 700;
   margin: 0;
   background: linear-gradient(to right, var(--text-primary), var(--text-secondary));
+  background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   letter-spacing: -0.02em;
@@ -170,22 +171,6 @@ nav {
 }
 
 .nav-link, .nav-btn {
-  margin-left: 0;
-}
-
-.nav-link {
-  color: var(--text-secondary);
-  text-decoration: none;
-  font-weight: 500;
-  font-size: 0.9375rem;
-  transition: color 0.2s ease;
-}
-
-.nav-link:hover {
-  color: var(--text-primary);
-}
-
-.nav-btn {
   color: var(--text-secondary);
   text-decoration: none;
   font-weight: 500;
@@ -195,7 +180,7 @@ nav {
   margin: 0;
 }
 
-.nav-btn:hover {
+.nav-link:hover, .nav-btn:hover {
   color: var(--text-primary);
 }
 /* Hero Section */
@@ -308,7 +293,23 @@ section {
   line-height: 1.7;
 }
 
-/* Grids */
+/* Loading Indicator */
+.loading-indicator {
+  text-align: center;
+  color: var(--text-secondary);
+  padding: var(--spacing-xl);
+  grid-column: 1 / -1;
+  font-size: 1.125rem;
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0% { opacity: 0.6; }
+  50% { opacity: 1; }
+  100% { opacity: 0.6; }
+}
+
+/* Grid */
 .grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, 280px);
